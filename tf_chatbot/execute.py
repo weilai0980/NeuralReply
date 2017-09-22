@@ -233,13 +233,6 @@ def train():
       if current_step % gConfig['steps_per_checkpoint'] == 0:
         
         
-        # print training status in txt file           
-        with open("res/tsRnn.txt", "a") as text_file:
-            text_file.write("At epoch %d: loss %f, train %f, test %f\n" % ( epoch, loss, sqrt(mean(err_tr)),\
-                                                                           sqrt(mean(err_ts))) )        
-        
-        
-        
         # Print statistics for the previous epoch.
         perplexity = math.exp(loss) if loss < 300 else float('inf')
         
@@ -261,6 +254,8 @@ def train():
         
         
         # Run evals on development set and print their perplexity.
+        eval_perp = 0.0
+        
         for bucket_id in xrange(len(_buckets)):
           
           if len(dev_set[bucket_id]) == 0:
@@ -274,7 +269,17 @@ def train():
                                        target_weights, bucket_id, True)
             
           eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
+          eval_perp+= eval_ppx
+            
           print("  eval: bucket %d perplexity %.2f" % (bucket_id, eval_ppx))
+        
+        # print training status in txt file           
+        with open("res/train.txt", "a") as text_file:
+            text_file.write("Step %d : train ppx: %f, test ppx: %f \n"\
+                            % ( current_step, perplexity, eval_perp/len(_buckets) ) )  
+        
+        
+        
         
         sys.stdout.flush()
 

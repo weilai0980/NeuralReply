@@ -1,0 +1,9 @@
+http://edwardlib.org/tutorials/gan
+
+https://github.com/soumith/ganhacks
+
+https://jaan.io/what-is-variational-autoencoder-vae-tutorial/
+
+https://github.com/altosaar/vae/blob/master/vae.py
+
+https://github.com/peteykun/Simple-GAN/blob/master/GAN.ipynb

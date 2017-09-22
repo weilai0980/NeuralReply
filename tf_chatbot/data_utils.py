@@ -75,7 +75,7 @@ def create_vocabulary(vocabulary_path, data_path, max_vocabulary_size,
 #                line = tf.compat.as_bytes(line)  # added by Ken
                 counter += 1
                             
-                if counter % 100000 == 0:
+                if counter % 5000 == 0:
                     print("  processing line %d" % counter)
                        
                 #tokens = tokenizer(line) if tokenizer else basic_tokenizer(line)
@@ -162,7 +162,7 @@ def data_to_token_ids(data_path, target_path, vocabulary_path,
             line = line.decode('utf-8')     #added by tian
             
             counter += 1
-            if counter % 100000 == 0:
+            if counter % 5000 == 0:
                 print("  tokenizing line %d" % counter)
                 
             token_ids = sentence_to_token_ids(line, vocab, tokenizer,

@@ -90,6 +90,8 @@ class Seq2SeqModel(object):
     self.buckets = buckets
     
     self.batch_size = batch_size
+    
+    # variable .assign() and .eval() operations 
     self.learning_rate = tf.Variable(
         float(learning_rate), trainable=False, dtype=dtype)
     self.learning_rate_decay_op = self.learning_rate.assign(
